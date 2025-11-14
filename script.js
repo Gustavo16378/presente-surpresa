@@ -172,6 +172,22 @@ document.addEventListener('DOMContentLoaded', () => {
             showSplashSequence();
         }, { once: true });
     }
+    // no explodeGift(), depois de giftImage.classList.add('explode'):
+// fallback: se animationend não acontecer em 800ms, forçar continuar
+let explodedFallback = setTimeout(() => {
+  // evita duplo disparo — checar se o giftScreen já foi escondido
+  if (giftScreen && giftScreen.style.display !== 'none') {
+    try { giftScreen.style.display = 'none'; } catch(e) {}
+    showSplashSequence();
+  }
+}, 800);
+
+// e no listener animationend dentro de explodeGift, limpar o timeout:
+giftImage.addEventListener('animationend', () => {
+    clearTimeout(explodedFallback);
+    giftScreen.style.display = 'none';
+    showSplashSequence();
+}, { once: true });
 
     function startGiftSequence() {
         if (giftStarted) return;
@@ -230,3 +246,4 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     document.addEventListener('keydown', (e) => { if (videoModal && videoModal.style.display === 'flex' && e.key === 'Escape') closeVideoModal(); });
 });
+
