@@ -1,0 +1,239 @@
+<<<<<<< HEAD
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bianca & Isaías</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bianca & Isaías</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body class="splash-active">
+    <!-- Tela do presente (aparece antes da splash). Substitua 'imagens/gift.png' quando tiver a imagem -->
+    <div id="giftScreen" class="gift-screen" aria-hidden="false" tabindex="0">
+        <div class="gift-inner">
+            <img id="giftImage" src="imagens/presente.png" alt="Presente" class="gift-img" />
+            <div id="giftCountdown" class="countdown">5</div>
+            <div class="gift-hint">Clique na tela para começar</div>
+        </div>
+    </div>
+
+    <!-- Splash screen: substitua 'imagens/netflix-logo.png' pela sua imagem de logo -->
+    <div id="splash" class="hidden" aria-hidden="true">
+        <img src="imagens/Netflix Logo Workmark.png" alt="Logo" class="splash-logo">
+        <!-- Som da intro: coloque um arquivo em imagens/netflix-sound.mp3 -->
+        <audio id="splash-audio" src="imagens/netflix-sound.mp3" preload="auto"></audio>
+    </div>
+    <main>
+        <!-- Todo o conteúdo do Hero (título, descrição, etc.) -->
+        <div class="hero">
+            <div class="hero-content">
+                <div class="series-info">
+                    <span>N</span>
+                    <p>S E R I E S</p>
+                </div>
+                <div class="top-10">
+                    <img src="imagens/Top10.png" alt="Top 10">
+                    <span>Top 1 Melhores Casais do Mundo</span>
+                </div>
+                <h1 class="title">Bianca e Isaías</h1>
+                <p class="description">
+                    O que começou com amizade e risadas se transformou em algo que nem o tempo conseguiu explicar. Em meio a conversas longas, abraços apertados e olhares sinceros, nasceu um amor leve, tranquilo e verdadeiro. Seis meses depois, eles seguem escrevendo sua própria história — sem roteiro, sem ensaio, só com sentimento. Um romance real, cheio de carinho, cumplicidade e momentos que valem mais que mil palavras.
+                </p>
+                <div class="release-info">
+                    <span>Estreou em 15/05/2025</span>
+                    <img src="imagens/Livre.png" alt="Livre para todos os públicos">
+                </div>
+                <div class="buttons">
+                    <button class="play-button">
+                        <img src="imagens/Polygon 1.png" alt="Play">
+                        Play
+                    </button>
+                    <button class="info-button">
+                        <img src="imagens/Vector (Stroke).png" alt="Info">
+                        Mais Informações
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Galeria -->
+        <section class="gallery">
+            <h2>Nossos Melhores Momentos</h2>
+            <!-- A mudança é aqui dentro -->
+            <div class="gallery-grid">
+                <div><img src="imagens/foto1.png" alt="Foto 1"></div>
+                <div><img src="imagens/foto2.png" alt="Foto 2"></div>
+                <div><img src="imagens/foto3.png" alt="Foto 3"></div>
+                <div><img src="imagens/foto4.png" alt="Foto 4"></div>
+                <div><img src="imagens/foto5.png" alt="Foto 5"></div>
+                <div><img src="imagens/foto6.png" alt="Foto 6"></div>
+                <div><img src="imagens/foto7.png" alt="Foto 7"></div>
+                <div><img src="imagens/foto8.png" alt="Foto 8"></div>
+                <div><img src="imagens/foto9.png" alt="Foto 9"></div>
+            </div>
+        </section>
+        <!-- Recomendações: dois vídeos da pasta videos/ -->
+        <section class="recommendations">
+            <h2>Recomendações para você</h2>
+            <div class="rec-grid">
+                <div class="video-card" data-src="videos/video1.mp4" tabindex="0" role="button" aria-label="Reproduzir recomendação 1">
+                    <div class="thumb">
+                        <img src="imagens/foto1.png" alt="Recomendação 1">
+                        <img class="netflix-badge" src="imagens/NETFLIX LOGO.png" alt="Netflix">
+                        <button class="play-circle" aria-hidden="true">
+                            <img src="imagens/play-large.png" alt="Play">
+                        </button>
+                    </div>
+                </div>
+
+                <div class="video-card" data-src="videos/video2.mp4" tabindex="0" role="button" aria-label="Reproduzir recomendação 2">
+                    <div class="thumb">
+                        <img src="imagens/foto2.png" alt="Recomendação 2">
+                        <img class="netflix-badge" src="imagens/NETFLIX LOGO.png" alt="Netflix">
+                        <button class="play-circle" aria-hidden="true">
+                            <img src="imagens/play-large.png" alt="Play">
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal da imagem (sem botões) -->
+    <div id="imageModal" class="image-modal">
+        <img class="modal-content" id="modalImage">
+    </div>
+
+    <!-- Modal de vídeo (reproduz em overlay ao clicar no card) -->
+    <div id="videoModal" class="video-modal" aria-hidden="true">
+        <div class="video-inner">
+            <button id="closeVideo" class="video-close" aria-label="Fechar">×</button>
+            <video id="modalVideo" controls playsinline webkit-playsinline></video>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+        <div class="gift-inner">
+            <img id="giftImage" src="imagens/presente.png" alt="Presente" class="gift-img" />
+            <div id="giftCountdown" class="countdown">5</div>
+            <div class="gift-hint">Clique na tela para começar</div>
+        </div>
+    </div>
+
+    <!-- Splash screen: substitua 'imagens/netflix-logo.png' pela sua imagem de logo -->
+    <div id="splash" class="hidden" aria-hidden="true">
+        <img src="imagens/Netflix Logo Workmark.png" alt="Logo" class="splash-logo">
+        <!-- Som da intro: coloque um arquivo em imagens/netflix-sound.mp3 -->
+        <audio id="splash-audio" src="imagens/netflix-sound.mp3" preload="auto"></audio>
+    </div>
+    <main>
+        <!-- Todo o conteúdo do Hero (título, descrição, etc.) -->
+        <div class="hero">
+            <div class="hero-content">
+                <div class="series-info">
+                    <span>N</span>
+                    <p>S E R I E S</p>
+                </div>
+                <div class="top-10">
+                    <img src="imagens/Top10.png" alt="Top 10">
+                    <span>Top 1 Melhores Casais do Mundo</span>
+                </div>
+                <h1 class="title">Bianca e Isaías</h1>
+                <p class="description">
+                    O que começou com amizade e risadas se transformou em algo que nem o tempo conseguiu explicar. Em meio a conversas longas, abraços apertados e olhares sinceros, nasceu um amor leve, tranquilo e verdadeiro. Seis meses depois, eles seguem escrevendo sua própria história — sem roteiro, sem ensaio, só com sentimento. Um romance real, cheio de carinho, cumplicidade e momentos que valem mais que mil palavras.
+                </p>
+                <div class="release-info">
+                    <span>Estreou em 15/05/2025</span>
+                    <img src="imagens/Livre.png" alt="Livre para todos os públicos">
+                </div>
+                <div class="buttons">
+                    <button class="play-button">
+                        <img src="imagens/Polygon 1.png" alt="Play">
+                        Play
+                    </button>
+                    <button class="info-button">
+                        <img src="imagens/Vector (Stroke).png" alt="Info">
+                        Mais Informações
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Galeria -->
+        <section class="gallery">
+            <h2>Nossos Melhores Momentos</h2>
+            <!-- A mudança é aqui dentro -->
+            <div class="gallery-grid">
+                <div><img src="imagens/foto1.png" alt="Foto 1"></div>
+                <div><img src="imagens/foto2.png" alt="Foto 2"></div>
+                <div><img src="imagens/foto3.png" alt="Foto 3"></div>
+                <div><img src="imagens/foto4.png" alt="Foto 4"></div>
+                <div><img src="imagens/foto5.png" alt="Foto 5"></div>
+                <div><img src="imagens/foto6.png" alt="Foto 6"></div>
+                <div><img src="imagens/foto7.png" alt="Foto 7"></div>
+                <div><img src="imagens/foto8.png" alt="Foto 8"></div>
+                <div><img src="imagens/foto9.png" alt="Foto 9"></div>
+            </div>
+        </section>
+        <!-- Recomendações: dois vídeos da pasta videos/ -->
+        <section class="recommendations">
+            <h2>Recomendações para você</h2>
+            <div class="rec-grid">
+                <div class="video-card" data-src="videos/video1.mp4" tabindex="0" role="button" aria-label="Reproduzir recomendação 1">
+                    <div class="thumb">
+                        <img src="imagens/foto1.png" alt="Recomendação 1">
+                        <img class="netflix-badge" src="imagens/NETFLIX LOGO.png" alt="Netflix">
+                        <button class="play-circle" aria-hidden="true">
+                            <img src="imagens/play-large.png" alt="Play">
+                        </button>
+                    </div>
+                </div>
+
+                <div class="video-card" data-src="videos/video2.mp4" tabindex="0" role="button" aria-label="Reproduzir recomendação 2">
+                    <div class="thumb">
+                        <img src="imagens/foto2.png" alt="Recomendação 2">
+                        <img class="netflix-badge" src="imagens/NETFLIX LOGO.png" alt="Netflix">
+                        <button class="play-circle" aria-hidden="true">
+                            <img src="imagens/play-large.png" alt="Play">
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal da imagem (sem botões) -->
+    <div id="imageModal" class="image-modal">
+        <img class="modal-content" id="modalImage">
+    </div>
+
+    <!-- Modal de vídeo (reproduz em overlay ao clicar no card) -->
+    <div id="videoModal" class="video-modal" aria-hidden="true">
+        <div class="video-inner">
+            <button id="closeVideo" class="video-close" aria-label="Fechar">×</button>
+            <video id="modalVideo" controls playsinline webkit-playsinline></video>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+>>>>>>> 3e2f8eb (Add present pre-splash, video recommendations, modals and styles)
+</html>
