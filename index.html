@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body class="splash-active">
-    <!-- Tela do presente (aparece antes da splash) -->
+    <!-- Tela do presente (aparece antes da splash). -->
     <div id="giftScreen" class="gift-screen" aria-hidden="false" tabindex="0">
         <div class="gift-inner">
             <img id="giftImage" src="imagens/presente.png" alt="Presente" class="gift-img" />
@@ -26,6 +26,7 @@
     </div>
 
     <main>
+        <!-- Hero -->
         <div class="hero">
             <div class="hero-content">
                 <div class="series-info">
@@ -38,7 +39,7 @@
                 </div>
                 <h1 class="title">Bianca e Isaías</h1>
                 <p class="description">
-                    O que começou com amizade e risadas se transformou em algo que nem o tempo conseguiu explicar. Em meio a conversas longas, abraços apertados e olhares sinceros, nasceu um amor...
+                    O que começou com amizade e risadas se transformou em algo que nem o tempo conseguiu explicar. Em meio a conversas longas, abraços apertados e olhares sinceros, nasceu um amor leve, tranquilo e verdadeiro. Seis meses depois, eles seguem escrevendo sua própria história — sem roteiro, sem ensaio, só com sentimento. Um romance real, cheio de carinho, cumplicidade e momentos que valem mais que mil palavras.
                 </p>
                 <div class="release-info">
                     <span>Estreou em 15/05/2025</span>
@@ -61,25 +62,25 @@
         <section class="gallery">
             <h2>Nossos Melhores Momentos</h2>
             <div class="gallery-grid">
-                <div><img src="imagens/foto1.png" alt="Foto 1"></div>
-                <div><img src="imagens/foto2.png" alt="Foto 2"></div>
-                <div><img src="imagens/foto3.png" alt="Foto 3"></div>
-                <div><img src="imagens/foto4.png" alt="Foto 4"></div>
-                <div><img src="imagens/foto5.png" alt="Foto 5"></div>
-                <div><img src="imagens/foto6.png" alt="Foto 6"></div>
-                <div><img src="imagens/foto7.png" alt="Foto 7"></div>
-                <div><img src="imagens/foto8.png" alt="Foto 8"></div>
-                <div><img src="imagens/foto9.png" alt="Foto 9"></div>
+                <div><img loading="lazy" src="imagens/foto1.png" alt="Foto 1"></div>
+                <div><img loading="lazy" src="imagens/foto2.png" alt="Foto 2"></div>
+                <div><img loading="lazy" src="imagens/foto3.png" alt="Foto 3"></div>
+                <div><img loading="lazy" src="imagens/foto4.png" alt="Foto 4"></div>
+                <div><img loading="lazy" src="imagens/foto5.png" alt="Foto 5"></div>
+                <div><img loading="lazy" src="imagens/foto6.png" alt="Foto 6"></div>
+                <div><img loading="lazy" src="imagens/foto7.png" alt="Foto 7"></div>
+                <div><img loading="lazy" src="imagens/foto8.png" alt="Foto 8"></div>
+                <div><img loading="lazy" src="imagens/foto9.png" alt="Foto 9"></div>
             </div>
         </section>
 
-        <!-- Recomendações (vídeos) -->
+        <!-- Recomendações: dois vídeos da pasta videos/ -->
         <section class="recommendations">
             <h2>Recomendações para você</h2>
             <div class="rec-grid">
                 <div class="video-card" data-src="videos/video1.mp4" tabindex="0" role="button" aria-label="Reproduzir recomendação 1">
                     <div class="thumb">
-                        <img src="imagens/foto1.png" alt="Recomendação 1">
+                        <img loading="lazy" src="imagens/foto1.png" alt="Recomendação 1">
                         <img class="netflix-badge" src="imagens/NETFLIX LOGO.png" alt="Netflix">
                         <button class="play-circle" aria-hidden="true">
                             <img src="imagens/play-large.png" alt="Play">
@@ -89,7 +90,7 @@
 
                 <div class="video-card" data-src="videos/video2.mp4" tabindex="0" role="button" aria-label="Reproduzir recomendação 2">
                     <div class="thumb">
-                        <img src="imagens/foto2.png" alt="Recomendação 2">
+                        <img loading="lazy" src="imagens/foto2.png" alt="Recomendação 2">
                         <img class="netflix-badge" src="imagens/NETFLIX LOGO.png" alt="Netflix">
                         <button class="play-circle" aria-hidden="true">
                             <img src="imagens/play-large.png" alt="Play">
@@ -98,11 +99,12 @@
                 </div>
             </div>
         </section>
+
     </main>
 
     <!-- Modal da imagem -->
     <div id="imageModal" class="image-modal">
-        <img class="modal-content" id="modalImage" alt="">
+        <img class="modal-content" id="modalImage" alt="Imagem ampliada">
     </div>
 
     <!-- Modal de vídeo -->
