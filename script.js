@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 document.addEventListener('DOMContentLoaded', () => {
     // Seletores de elementos
     const playButton = document.querySelector('.play-button');
@@ -218,6 +217,7 @@ document.addEventListener('DOMContentLoaded', () => {
             showPrevImage();
         }
     }
+
 =======
 document.addEventListener('DOMContentLoaded', () => {
     // Seletores de elementos
@@ -568,5 +568,4 @@ document.addEventListener('DOMContentLoaded', () => {
             closeVideoModal();
         }
     });
->>>>>>> 3e2f8eb (Add present pre-splash, video recommendations, modals and styles)
 });
