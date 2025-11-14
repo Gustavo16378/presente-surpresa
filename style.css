@@ -1,18 +1,17 @@
-/* Fontes e estilos base (sem alterações) */
+/* Fontes e estilos base */
 @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@400;700&display=swap');
 body { background-color: #141414; color: #fff; font-family: 'Poppins', sans-serif; margin: 0; padding: 0; }
 
 /* Splash screen (intro) */
 #splash {
     position: fixed;
-    inset: 0; /* top:0; right:0; bottom:0; left:0; */
+    inset: 0;
     background: #000;
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 2000;
 }
-
 .splash-logo {
     width: clamp(160px, 30vw, 420px);
     max-width: 80%;
@@ -21,7 +20,6 @@ body { background-color: #141414; color: #fff; font-family: 'Poppins', sans-seri
     filter: drop-shadow(0 12px 18px rgba(0,0,0,0.6));
     animation: splash-animate 2400ms cubic-bezier(.2,.8,.2,1) forwards;
 }
-
 @keyframes splash-animate {
     0%   { opacity: 0; transform: scale(0.6); }
     15%  { opacity: 1; transform: scale(1.05); }
@@ -29,14 +27,17 @@ body { background-color: #141414; color: #fff; font-family: 'Poppins', sans-seri
     75%  { opacity: 1; transform: scale(1); }
     100% { opacity: 0; transform: scale(1.08); }
 }
-
-/* Classe aplicada quando a splash for removida para evitar piscar do layout */
 #splash.hidden { display: none !important; }
-
-/* Enquanto a splash estiver ativa, evita scroll da página em segundo plano */
 body.splash-active { overflow: hidden; }
-/* Estilos do Hero (sem alterações) */
-.hero { background-image: linear-gradient(to top, rgba(20, 20, 20, 1) 20%, rgba(20, 20, 20, 0) 80%), url('imagens/Foto-principal.jpg'); background-size: cover; background-repeat: no-repeat; background-position: center center; height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 50px 10vh 50px; box-sizing: border-box; }
+
+/* Estilos do Hero */
+.hero { 
+    background-image: linear-gradient(to top, rgba(20, 20, 20, 1) 20%, rgba(20, 20, 20, 0) 80%), url('imagens/Foto-principal.jpg'); 
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    background-position: center;
+    padding: 80px 50px;
+}
 .hero-content { max-width: 600px; }
 .series-info { display: flex; align-items: center; gap: 10px; }
 .series-info span { color: #E50914; font-size: 28px; font-weight: bold; font-family: sans-serif; }
@@ -47,476 +48,57 @@ body.splash-active { overflow: hidden; }
 .description { font-family: 'Great Vibes', cursive; font-weight: normal; font-size: 22px; line-height: 1.5; }
 .release-info { display: flex; align-items: center; gap: 10px; margin-top: 20px; color: #a3d9a5; font-weight: bold; }
 .buttons { margin-top: 30px; display: flex; gap: 15px; }
-.play-button, .info-button { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 10px 25px; border: none; border-radius: 5px; font-size: 16px; font-weight: bold; cursor: pointer; transition: background-color 0.3s ease; }
+.play-button, .info-button { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 10px 25px; border: none; border-radius: 5px; font-size: 16px; font-weight: bold; cursor: pointer; }
 .play-button { background-color: #fff; color: #000; }
 .info-button { background-color: rgba(109, 109, 110, 0.7); color: #fff; }
 
-/* Galeria com layout de grade */
+/* Galeria com layout de grade — ajuste para responsivo */
 .gallery-grid {
     display: grid;
-    /* É AQUI QUE VOCÊ CONTROLA O TAMANHO! Altere 250px para o tamanho que quiser. */
-    grid-template-columns: repeat(auto-fill, minmax(1550px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 15px;
 }
-
-/* O item da grade (a div) */
-.gallery-grid div {
-    width: 100%; /* A div ocupa 100% da coluna da grade */
-}
-
-/* A imagem dentro da div */
+.gallery-grid div { width: 100%; }
 .gallery-grid img {
-    width: 100%; /* A imagem ocupa 100% da div */
-    height: 100%; /* Garante que a imagem preencha a altura */
-    object-fit: cover; /* Evita distorção, cortando se necessário */
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
     border-radius: 5px;
     cursor: pointer;
     transition: transform 200ms cubic-bezier(.2,.8,.2,1), box-shadow 200ms;
-    will-change: transform;
-    transform-origin: center center;
-    outline: none; /* removemos o outline padrão; usamos focus-visible abaixo */
-    display: block;
 }
-
-/* Aumenta suavemente ao hover e também quando a imagem recebe foco via teclado */
-.gallery-grid img:hover,
-.gallery-grid img:focus,
-.gallery-grid img:focus-visible {
+.gallery-grid img:hover, .gallery-grid img:focus, .gallery-grid img:focus-visible {
     transform: scale(1.08);
     box-shadow: 0 12px 24px rgba(0,0,0,0.45);
 }
+.gallery-grid div:last-child:nth-child(odd) { grid-column: 1 / -1; justify-self: center; }
 
-.gallery-grid img:focus-visible {
-    /* Indicação visual acessível para navegação por teclado */
-    box-shadow: 0 0 0 4px rgba(255,255,255,0.12), 0 12px 24px rgba(0,0,0,0.45);
-    border-radius: 6px;
-}
+/* Modal de imagem */
+.image-modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); align-items: center; justify-content: center; }
+.modal-content { width: auto; height: auto; max-width: 95%; max-height: 95%; animation: zoom-in 0.3s ease-in-out; touch-action: none; }
+@keyframes zoom-in { from { transform: scale(0.5); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
-/* Regra corrigida para centralizar a última imagem */
-.gallery-grid div:last-child:nth-child(odd) {
-    grid-column: 1 / -1;
-    justify-self: center;
-}
-
-/* --- MODAL CORRIGIDO --- */
-.image-modal {
-    display: none; /* CORREÇÃO DEFINITIVA: O modal começa escondido. */
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.9);
-    align-items: center;
-    justify-content: center;
-}
-
-.modal-content {
-    /* Força a imagem a ter a largura ou altura máxima possível, sem distorcer. */
-    width: auto;
-    height: auto;
-    max-width: 95%;   /* Usa porcentagem do container */
-    max-height: 95%;  /* Usa porcentagem do container */
-
-    /* Propriedades que você já tinha, mantidas por serem boas */
-    animation: zoom-in 0.3s ease-in-out;
-    touch-action: none;
-}
-
-@keyframes zoom-in {
-    from { transform: scale(0.5); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
-}
-
-/* Responsividade (sem alterações) */
-@media (max-width: 768px) { .hero { padding: 0 30px 12vh 30px; } .title { font-size: 64px; } .gallery { padding: 40px 30px; } .gallery-grid { grid-template-columns: 1fr 1fr; } }
+/* Responsividade */
+@media (max-width: 768px) { .hero { padding: 0 30px 12vh 30px; } .title { font-size: 64px; } .gallery { padding: 40px 30px; } .gallery-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 480px) { .hero { padding: 0 25px 15vh 25px; } .title { font-size: 48px; } .description { font-size: 16px; } .gallery-grid div:last-child:nth-child(odd) { grid-column: 1 / -1; } }
 
-.gallery {
-    /* A galeria começa oculta; só aparece quando a classe .visible for adicionada pelo JS */
-    display: none;
-    opacity: 0;
-    transition: opacity 250ms ease, transform 250ms ease;
-}
+/* Recomendações (vídeos) */
+.recommendations { padding: 40px 50px; display: none; opacity: 0; transition: opacity 220ms ease, transform 220ms ease; }
+.recommendations.visible { display: block; opacity: 1; animation: gallery-fade-in 220ms ease both; }
+.rec-grid { display: flex; gap: 18px; flex-wrap: wrap; }
+.video-card { width: 240px; display: flex; flex-direction: column; align-items: flex-start; }
+.video-card .thumb { position: relative; width: 100%; height: 140px; overflow: hidden; border-radius: 6px; padding: 6px; background: transparent; }
+.video-card .thumb img { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 4px; }
+.play-circle { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,0.95); display: flex; align-items: center; justify-content: center; border: 2px solid rgba(0,0,0,0.18); cursor: pointer; }
 
-.gallery.visible {
-    display: block;
-    opacity: 1;
-    animation: gallery-fade-in 220ms ease both;
-}
-
-@keyframes gallery-fade-in {
-    from { opacity: 0; transform: translateY(8px); }
-    to   { opacity: 1; transform: translateY(0); }
-}
-.gallery.no-anim {
-    /* Quando presente, evita re-executar a animação de entrada */
-    animation: none !important;
-}
-
-.play-button.active { background-color: #E50914; color: #fff; }
-=======
-/* Fontes e estilos base (sem alterações) */
-@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@400;700&display=swap');
-body { background-color: #141414; color: #fff; font-family: 'Poppins', sans-serif; margin: 0; padding: 0; }
-
-/* Splash screen (intro) */
-#splash {
-    position: fixed;
-    inset: 0; /* top:0; right:0; bottom:0; left:0; */
-    background: #000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 2000;
-}
-
-.splash-logo {
-    width: clamp(160px, 30vw, 420px);
-    max-width: 80%;
-    height: auto;
-    display: block;
-    filter: drop-shadow(0 12px 18px rgba(0,0,0,0.6));
-    animation: splash-animate 2400ms cubic-bezier(.2,.8,.2,1) forwards;
-}
-
-@keyframes splash-animate {
-    0%   { opacity: 0; transform: scale(0.6); }
-    15%  { opacity: 1; transform: scale(1.05); }
-    45%  { opacity: 1; transform: scale(1); }
-    75%  { opacity: 1; transform: scale(1); }
-    100% { opacity: 0; transform: scale(1.08); }
-}
-
-/* Classe aplicada quando a splash for removida para evitar piscar do layout */
-#splash.hidden { display: none !important; }
-
-/* Enquanto a splash estiver ativa, evita scroll da página em segundo plano */
-body.splash-active { overflow: hidden; }
-/* Estilos do Hero (sem alterações) */
-.hero { background-image: linear-gradient(to top, rgba(20, 20, 20, 1) 20%, rgba(20, 20, 20, 0) 80%), url('imagens/Foto-principal.jpg'); background-size: cover; background-repeat: no-repeat; background-position: center center; height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 50px 10vh 50px; box-sizing: border-box; }
-.hero-content { max-width: 600px; }
-.series-info { display: flex; align-items: center; gap: 10px; }
-.series-info span { color: #E50914; font-size: 28px; font-weight: bold; font-family: sans-serif; }
-.series-info p { letter-spacing: 0.2em; font-weight: bold; }
-.top-10 { display: flex; align-items: center; gap: 10px; margin-top: 10px; }
-.top-10 img { width: 30px; }
-.title { font-family: 'Great Vibes', cursive; font-weight: normal; font-size: 80px; margin: 15px 0; }
-.description { font-family: 'Great Vibes', cursive; font-weight: normal; font-size: 38px; line-height: 1.5; }
-.release-info { display: flex; align-items: center; gap: 10px; margin-top: 20px; color: #a3d9a5; font-weight: bold; }
-.buttons { margin-top: 30px; display: flex; gap: 15px; }
-.play-button, .info-button { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 10px 25px; border: none; border-radius: 5px; font-size: 16px; font-weight: bold; cursor: pointer; transition: background-color 0.3s ease; }
-.play-button { background-color: #fff; color: #000; }
-.info-button { background-color: rgba(109, 109, 110, 0.7); color: #fff; }
-
-/* Galeria com layout de grade */
-.gallery-grid {
-    display: grid;
-    /* É AQUI QUE VOCÊ CONTROLA O TAMANHO! Altere 250px para o tamanho que quiser. */
-    grid-template-columns: repeat(auto-fill, minmax(1550px, 1fr));
-    gap: 15px;
-}
-
-/* O item da grade (a div) */
-.gallery-grid div {
-    width: 100%; /* A div ocupa 100% da coluna da grade */
-}
-
-/* A imagem dentro da div */
-.gallery-grid img {
-    width: 100%; /* A imagem ocupa 100% da div */
-    height: 100%; /* Garante que a imagem preencha a altura */
-    object-fit: cover; /* Evita distorção, cortando se necessário */
-    border-radius: 5px;
-    cursor: pointer;
-    transition: transform 200ms cubic-bezier(.2,.8,.2,1), box-shadow 200ms;
-    will-change: transform;
-    transform-origin: center center;
-    outline: none; /* removemos o outline padrão; usamos focus-visible abaixo */
-    display: block;
-}
-
-/* Aumenta suavemente ao hover e também quando a imagem recebe foco via teclado */
-.gallery-grid img:hover,
-.gallery-grid img:focus,
-.gallery-grid img:focus-visible {
-    transform: scale(1.08);
-    box-shadow: 0 12px 24px rgba(0,0,0,0.45);
-}
-
-.gallery-grid img:focus-visible {
-    /* Indicação visual acessível para navegação por teclado */
-    box-shadow: 0 0 0 4px rgba(255,255,255,0.12), 0 12px 24px rgba(0,0,0,0.45);
-    border-radius: 6px;
-}
-
-/* Regra corrigida para centralizar a última imagem */
-.gallery-grid div:last-child:nth-child(odd) {
-    grid-column: 1 / -1;
-    justify-self: center;
-}
-
-/* --- MODAL CORRIGIDO --- */
-.image-modal {
-    display: none; /* CORREÇÃO DEFINITIVA: O modal começa escondido. */
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.9);
-    align-items: center;
-    justify-content: center;
-}
-
-.modal-content {
-    /* Força a imagem a ter a largura ou altura máxima possível, sem distorcer. */
-    width: auto;
-    height: auto;
-    max-width: 95%;   /* Usa porcentagem do container */
-    max-height: 95%;  /* Usa porcentagem do container */
-
-    /* Propriedades que você já tinha, mantidas por serem boas */
-    animation: zoom-in 0.3s ease-in-out;
-    touch-action: none;
-}
-
-@keyframes zoom-in {
-    from { transform: scale(0.5); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
-}
-
-/* Responsividade (sem alterações) */
-@media (max-width: 768px) { .hero { padding: 0 30px 12vh 30px; } .title { font-size: 64px; } .gallery { padding: 40px 30px; } .gallery-grid { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 480px) { .hero { padding: 0 25px 15vh 25px; } .title { font-size: 48px; } .description { font-size: 16px; } .gallery-grid div:last-child:nth-child(odd) { grid-column: 1 / -1; } }
-
-.gallery {
-    /* A galeria começa oculta; só aparece quando a classe .visible for adicionada pelo JS */
-    display: none;
-    opacity: 0;
-    transition: opacity 250ms ease, transform 250ms ease;
-}
-
-.gallery.visible {
-    display: block;
-    opacity: 1;
-    animation: gallery-fade-in 220ms ease both;
-}
-
-@keyframes gallery-fade-in {
-    from { opacity: 0; transform: translateY(8px); }
-    to   { opacity: 1; transform: translateY(0); }
-}
-.gallery.no-anim {
-    /* Quando presente, evita re-executar a animação de entrada */
-    animation: none !important;
-}
-.play-button.active { background-color: #E50914; color: #fff; }
-
-/* --- Recomendações (seção de vídeos) --- */
-.recommendations {
-    padding: 40px 50px;
-    box-sizing: border-box;
-    /* começa escondida, aparece apenas quando .visible for adicionada (igual à galeria) */
-    display: none;
-    opacity: 0;
-    transition: opacity 220ms ease, transform 220ms ease;
-}
-.recommendations.visible {
-    display: block;
-    opacity: 1;
-    animation: gallery-fade-in 220ms ease both;
-}
-.recommendations h2 {
-    font-size: 24px;
-    margin: 0 0 18px 0;
-    color: #fff;
-}
-.rec-grid {
-    display: flex;
-    gap: 18px;
-    flex-wrap: wrap;
-}
-.video-card {
-    width: 240px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-.video-card video {
-    width: 100%;
-    height: 140px;
-    background: #000;
-    border-radius: 6px;
-    object-fit: cover;
-}
-.rec-caption {
-    margin-top: 10px;
-    color: #ffffffcc;
-    font-weight: 600;
-}
-
-@media (max-width: 768px) {
-    .recommendations { padding: 30px 30px; }
-    .video-card { width: 48%; }
-    .video-card video { height: 160px; }
-}
-@media (max-width: 480px) {
-    .video-card { width: 100%; }
-    .video-card video { height: 200px; }
-}
-
-/* Thumb + overlay (estilo Netflix) */
-.video-card .thumb {
-    position: relative;
-    width: 100%;
-    /* fixa a altura do thumbnail e adiciona padding para enquadrar a imagem */
-    height: 140px;
-    overflow: hidden;
-    border-radius: 6px;
-    box-sizing: border-box;
-    padding: 6px; /* cria a margem interna que 'diminui' a foto */
-    background: transparent;
-}
-.video-card .thumb img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 4px; /* mantém cantos arredondados dentro do padding */
-}
-.video-card .thumb::after {
-    /* overlay menos escuro para aumentar brilho das thumbs */
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: rgba(0,0,0,0.32); /* menos escuro */
-    pointer-events: none;
-    transition: background 180ms ease;
-}
-.video-card .thumb:hover::after,
-.video-card .thumb:focus-within::after {
-    /* clareamento no hover/foco para indicar interatividade */
-    background: rgba(0,0,0,0.12);
-}
-
-/* leve aumento de brilho da imagem ao passar o mouse para maior legibilidade */
-.video-card .thumb:hover img,
-.video-card .thumb:focus-within img {
-    transform: scale(1.01); /* sutil zoom */
-    filter: brightness(1.06);
-}
-.video-card .thumb .netflix-badge {
-    position: absolute;
-    left: 8px;
-    top: 8px;
-    width: 34px; /* menor */
-    height: auto;
-    opacity: 0.95;
-    filter: drop-shadow(0 6px 10px rgba(0,0,0,0.6));
-}
-.play-circle {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 44px; /* menor */
-    height: 44px; /* menor */
-    min-width: 44px;
-    min-height: 44px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.95); /* mantém contraste */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 2px solid rgba(0,0,0,0.18);
-    cursor: pointer;
-    padding: 0;
-    line-height: 0;
-    overflow: hidden;
-    box-sizing: border-box;
-}
-.play-circle img { width: 20px; height: 20px; display: block; filter: none; }
-.video-card:focus { outline: none; }
-.video-card:focus .play-circle { box-shadow: 0 0 0 4px rgba(255,255,255,0.08); }
-
-/* Modal de vídeo */
-.video-modal {
-    display: none;
-    position: fixed;
-    inset: 0;
-    z-index: 1500;
-    background: rgba(0,0,0,0.92);
-    align-items: center;
-    justify-content: center;
-}
-.video-inner {
-    position: relative;
-    width: min(1100px, 95%);
-    max-height: 90vh;
-    z-index: 1510; /* garantir que o conteúdo esteja acima do fundo */
-    overflow: visible; /* permitir que o botão fechar fique visível */
-}
-.video-inner video {
-    width: 100%;
-    height: auto;
-    border-radius: 6px;
-    background: #000;
-}
-.video-close {
-    position: absolute;
-    right: 8px;
-    top: 8px;
-    background: rgba(0,0,0,0.6);
-    border: none;
-    color: #fff;
-    font-size: 26px;
-    cursor: pointer;
-    padding: 6px 10px;
-    border-radius: 6px;
-    z-index: 1520; /* acima do vídeo */
-}
-
-@media (max-width: 768px) {
-    .video-card .thumb { height: 160px; padding: 6px; }
-    .video-card .thumb img { height: 100%; }
-}
-
-@media (max-width: 480px) {
-    .video-card .thumb { height: 220px; padding: 6px; }
-    .video-card .thumb img { height: 100%; }
-    .video-inner { width: 100%; max-height: 100vh; }
-    .video-close { top: 10px; right: 10px; font-size: 28px; }
-}
-
-/* ---- Tela do presente ---- */
-.gift-screen {
-    position: fixed;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(180deg, #0f0f0f 0%, #1b1b1b 100%);
-    z-index: 3000;
-}
+/* Tela do presente */
+.gift-screen { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; background: linear-gradient(180deg, #0f0f0f 0%, #1b1b1b 100%); z-index: 3000; }
 .gift-inner { text-align: center; color: #fff; }
 .gift-img { width: 220px; height: 220px; object-fit: contain; display: block; margin: 0 auto 18px; }
-.gift-img.bobbing { animation: gift-bob 900ms ease-in-out infinite; transform-origin: center; }
-@keyframes gift-bob {
-    0% { transform: translateY(0) rotate(-2deg); }
-    50% { transform: translateY(-8px) rotate(2deg); }
-    100% { transform: translateY(0) rotate(-2deg); }
-}
 .countdown { font-size: 48px; font-weight: 700; letter-spacing: 2px; margin-top: 6px; }
-.gift-hint { margin-top: 12px; color: #ddd; font-size: 14px; }
-.gift-img.explode { animation: gift-explode 520ms ease-in forwards; }
-@keyframes gift-explode {
-    0% { transform: scale(1) rotate(0deg); opacity: 1; }
-    60% { transform: scale(1.8) rotate(20deg); opacity: 0.85; }
-    100% { transform: scale(3.5) rotate(45deg); opacity: 0; }
-}
 
-/* esconder splash por padrão (classe .hidden já existe) e garantir prioridade */
+/* utilitários */
 .hidden { display: none !important; }
+.gallery.visible { display: block; opacity: 1; animation: gallery-fade-in 220ms ease both; }
+.gallery.no-anim { animation: none !important; }
+.play-button.active { background-color: #E50914; color: #fff; }
