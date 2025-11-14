@@ -102,3 +102,22 @@ body.splash-active { overflow: hidden; }
 .gallery.visible { display: block; opacity: 1; animation: gallery-fade-in 220ms ease both; }
 .gallery.no-anim { animation: none !important; }
 .play-button.active { background-color: #E50914; color: #fff; }
+.gift-img.bobbing {
+    animation: gift-bob 900ms ease-in-out infinite;
+    transform-origin: center;
+}
+
+@keyframes gift-bob {
+    0%   { transform: translateY(0) rotate(-2deg); }
+    50%  { transform: translateY(-8px) rotate(2deg); }
+    100% { transform: translateY(0) rotate(-2deg); }
+}
+
+.gift-img.explode {
+    animation: gift-explode 520ms ease-in forwards;
+}
+@keyframes gift-explode {
+    0%   { transform: scale(1) rotate(0deg); opacity: 1; }
+    60%  { transform: scale(1.8) rotate(20deg); opacity: 0.85; }
+    100% { transform: scale(3.5) rotate(45deg); opacity: 0; }
+}
